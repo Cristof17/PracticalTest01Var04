@@ -18,7 +18,7 @@
 
         <activity android:name=".PracticalTest01Var04SecondaryActivity"/>
 
-        <service android:name=".PracticalTest01Var04Service"/>  
+        <service android:name=".PracticalTest01Var04Service"/>
     </application>
 
 </manifest>

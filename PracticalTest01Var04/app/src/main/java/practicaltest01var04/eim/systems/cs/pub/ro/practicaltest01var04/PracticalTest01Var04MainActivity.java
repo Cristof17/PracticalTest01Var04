@@ -1,12 +1,18 @@
 package practicaltest01var04.eim.systems.cs.pub.ro.practicaltest01var04;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.StringTokenizer;
 
 public class PracticalTest01Var04MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -16,6 +22,10 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity implemen
     Button A,B,C,D,E, next;
     TextView text, result;
     int apasari = 0;
+
+    String action = "broadcast_receiver_action";
+
+    MyBroadcastReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +47,10 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity implemen
         D.setOnClickListener(this);
         E.setOnClickListener(this);
         next.setOnClickListener(this);
+
+        receiver = new MyBroadcastReceiver();
+        IntentFilter intentFilter = new IntentFilter(action);
+        registerReceiver(receiver, intentFilter);
     }
 
     @Override
@@ -90,6 +104,28 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity implemen
             } else if (resultCode == RESULT_CANCELED){
                 result.setText("Cancel pressed");
                 Toast.makeText(getApplicationContext(), "Cancel  pressed", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Intent stopServiceIntent = new Intent(getApplicationContext(), PracticalTest01Var04Service.class);
+        stopService(stopServiceIntent);
+        if (receiver != null) {
+            unregisterReceiver(receiver);
+        }
+
+    }
+
+    private static class  MyBroadcastReceiver extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String extra = intent.getStringExtra("text");
+            StringTokenizer tokenizer = new StringTokenizer(extra, ",");
+            while (tokenizer.hasMoreElements()){
+                Log.d("MY_BROADCAST_RECEIVER", tokenizer.nextToken());
             }
         }
     }
