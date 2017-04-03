@@ -13,5 +13,55 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Hello World!"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/number_text_field"/>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next Activity"
+        android:id="@+id/next_activity" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/center"
+        android:layout_centerInParent="true"
+        android:text="E"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/left_up"
+        android:text="A"
+        android:layout_toLeftOf="@id/center"
+        android:layout_above="@id/center"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/right_up"
+        android:text="B"
+        android:layout_toRightOf="@id/center"
+        android:layout_above="@id/center"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/left_down"
+        android:text="C"
+        android:layout_toLeftOf="@id/center"
+        android:layout_below="@id/center"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/right_down"
+        android:text="D"
+        android:layout_toRightOf="@id/center"
+        android:layout_below="@id/center"/>
+
+
 </RelativeLayout>
