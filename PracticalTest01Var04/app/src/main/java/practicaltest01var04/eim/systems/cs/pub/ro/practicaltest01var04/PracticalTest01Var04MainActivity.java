@@ -72,19 +72,24 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity implemen
         Toast.makeText(getApplicationContext(), "Nr apasari = " + apasari, Toast.LENGTH_SHORT).show();
         if (apasari == 4){
             //TODO Start service
+            Intent serviceIntent = new Intent(getApplicationContext(), PracticalTest01Var04Service.class);
+            startService(serviceIntent);
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         apasari = 0;
+        text.setText("");
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == myRequestCode){
             if (resultCode == RESULT_OK){
                 //set another text view to the text sent from the second activitiy
                 result.setText("Verifiy pressed");
+                Toast.makeText(getApplicationContext(), "Verifiy  pressed", Toast.LENGTH_SHORT).show();
             } else if (resultCode == RESULT_CANCELED){
                 result.setText("Cancel pressed");
+                Toast.makeText(getApplicationContext(), "Cancel  pressed", Toast.LENGTH_SHORT).show();
             }
         }
     }
