@@ -87,6 +87,7 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity implemen
         if (apasari == 4){
             //TODO Start service
             Intent serviceIntent = new Intent(getApplicationContext(), PracticalTest01Var04Service.class);
+            serviceIntent.putExtra("text", text.getText().toString());
             startService(serviceIntent);
         }
     }
@@ -122,11 +123,9 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity implemen
     private static class  MyBroadcastReceiver extends BroadcastReceiver{
         @Override
         public void onReceive(Context context, Intent intent) {
-            String extra = intent.getStringExtra("text");
-            StringTokenizer tokenizer = new StringTokenizer(extra, ",");
-            while (tokenizer.hasMoreElements()){
-                Log.d("MY_BROADCAST_RECEIVER", tokenizer.nextToken());
-            }
+            String text = intent.getStringExtra("text");
+            Log.d("BROADCAST RECEIVER", "Received " + text);
+
         }
     }
 }
