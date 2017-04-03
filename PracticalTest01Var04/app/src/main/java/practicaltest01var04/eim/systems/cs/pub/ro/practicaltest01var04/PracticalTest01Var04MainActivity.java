@@ -128,4 +128,26 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity implemen
 
         }
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        Log.d("MAIN ACTIVITY", "onSaveInstanceState");
+        super.onSaveInstanceState(outState);
+        outState.putString("text", text.getText().toString());
+        outState.putInt("apasari", apasari);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.d("MAIN ACTIVITY", "onRestoreSavedInstanceState");
+        if (savedInstanceState == null){
+            Log.d("MAIN ACTIVITY", "Saved instance state is null");
+        } else {
+            if (text != null){
+                text.setText(savedInstanceState.getString("text"));
+                apasari = savedInstanceState.getInt("apasari");
+            }
+        }
+    }
 }
