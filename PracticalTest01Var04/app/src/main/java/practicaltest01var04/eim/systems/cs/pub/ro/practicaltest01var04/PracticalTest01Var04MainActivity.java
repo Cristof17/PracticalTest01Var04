@@ -1,5 +1,6 @@
 package practicaltest01var04.eim.systems.cs.pub.ro.practicaltest01var04;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,8 +10,11 @@ import android.widget.TextView;
 public class PracticalTest01Var04MainActivity extends AppCompatActivity implements View.OnClickListener{
 
 
+    public final int myRequestCode = 100;
+
     Button A,B,C,D,E, next;
     TextView text;
+    int apasari = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +62,23 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity implemen
             String newText = currText + "E,";
             text.setText(newText);
         } else if (view == next){
+            Intent secondaryActivityIntent = new Intent(getApplicationContext(), PracticalTest01Var04SecondaryActivity.class);
+            secondaryActivityIntent.putExtra("text", text.getText().toString());
+            startActivityForResult(secondaryActivityIntent, requestCode);
+        }
+        apasari++;
+        if (apasari == 4){
+            //TODO Start service
+        }
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == myRequestCode){
+            if (resultCode == RESULT_OK){
+                //set another text view to the text sent from the second activitiy
+            }
         }
     }
 }
