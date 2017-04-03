@@ -64,7 +64,7 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity implemen
         } else if (view == next){
             Intent secondaryActivityIntent = new Intent(getApplicationContext(), PracticalTest01Var04SecondaryActivity.class);
             secondaryActivityIntent.putExtra("text", text.getText().toString());
-            startActivityForResult(secondaryActivityIntent, requestCode);
+            startActivityForResult(secondaryActivityIntent, myRequestCode);
         }
         apasari++;
         if (apasari == 4){
