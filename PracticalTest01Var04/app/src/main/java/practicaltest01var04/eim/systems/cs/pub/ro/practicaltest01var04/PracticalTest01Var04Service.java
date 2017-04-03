@@ -20,6 +20,7 @@ public class PracticalTest01Var04Service extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d("SERVICE", "Started service");
         if (intent != null){
             receivedIntent  = intent;
             String extra = receivedIntent.getStringExtra("text");
@@ -27,6 +28,7 @@ public class PracticalTest01Var04Service extends Service {
             while (tokenizer.hasMoreElements()){
                 Intent broadcastIntent = new Intent(action);
                 broadcastIntent.putExtra("text", tokenizer.nextToken());
+                sendBroadcast(broadcastIntent);
             }
         }
         return START_STICKY;
