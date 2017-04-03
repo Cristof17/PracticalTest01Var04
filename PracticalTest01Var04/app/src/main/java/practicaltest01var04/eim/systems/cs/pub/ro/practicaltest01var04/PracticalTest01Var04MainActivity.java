@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PracticalTest01Var04MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -13,7 +14,7 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity implemen
     public final int myRequestCode = 100;
 
     Button A,B,C,D,E, next;
-    TextView text;
+    TextView text, result;
     int apasari = 0;
 
     @Override
@@ -28,6 +29,7 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity implemen
         E = (Button)findViewById(R.id.right_down);
         next = (Button)findViewById(R.id.next_activity);
         text = (TextView)findViewById(R.id.number_text_field);
+        result = (TextView)findViewById(R.id.result_text);
 
         A.setOnClickListener(this);
         B.setOnClickListener(this);
@@ -67,6 +69,7 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity implemen
             startActivityForResult(secondaryActivityIntent, myRequestCode);
         }
         apasari++;
+        Toast.makeText(getApplicationContext(), "Nr apasari = " + apasari, Toast.LENGTH_SHORT).show();
         if (apasari == 4){
             //TODO Start service
         }
@@ -74,10 +77,14 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity implemen
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        apasari = 0;
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == myRequestCode){
             if (resultCode == RESULT_OK){
                 //set another text view to the text sent from the second activitiy
+                result.setText("Verifiy pressed");
+            } else if (resultCode == RESULT_CANCELED){
+                result.setText("Cancel pressed");
             }
         }
     }
